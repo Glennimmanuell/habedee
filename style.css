@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(135deg, #ffecd2, #fcb69f);
+    overflow: hidden;
+}
+
+/* Confetti background effect */
+body::before {
+    content: "🎉🎂🎈🎁✨";
+    position: absolute;
+    font-size: 60px;
+    opacity: 0.15;
+    animation: float 10s linear infinite;
+    top: -100px;
+    left: 20px;
+}
+
+@keyframes float {
+    0% { transform: translateY(-100px) rotate(0deg); }
+    100% { transform: translateY(120vh) rotate(360deg); }
+}
+
+/* Book */
+.book {
+    position: relative;
+    width: 550px;
+    height: 700px;
+    transition: transform 2s;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    border-radius: 12px;
+}
+
+.paper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    perspective: 1500px;
+}
+
+.front,
+.back {
+    background: white;
+    border-radius: 15px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform-origin: left;
+    transition: transform 0.5s;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* Tambah border lucu */
+.front {
+    z-index: 1;
+    backface-visibility: hidden;
+    border-left: 5px solid gold;
+    background: linear-gradient(135deg, #fff7e6, #ffe6f7);
+}
+
+.back {
+    z-index: 0;
+    background: linear-gradient(135deg, #e6f7ff, #f9e6ff);
+}
+
+.front-content,
+.back-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    font-weight: bold;
+    color: #444;
+    text-align: center;
+    padding: 20px;
+}
+
+.back-inner {
+  transform: rotateY(180deg); /* balikin supaya teks normal */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Paper flip effect */
+.flipped .front,
+.flipped .back {
+    transform: rotateY(-180deg);
+}
+
+.page-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.page-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    font-size: 24px;
+    text-align: center;
+    background: linear-gradient(135deg, #fff7e6, #ffe6f7);
+    border-radius: 15px;
+}
+
+.page-text h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #d63384;
+}
+
+.page-text p {
+    font-size: 22px;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Paper stack order */
+#p1 { z-index: 6; }
+#p2 { z-index: 5; }
+#p3 { z-index: 4; }
+#p4 { z-index: 3; }
+#p5 { z-index: 2; }
+#p6 { z-index: 1; }
